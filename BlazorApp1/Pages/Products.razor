@@ -1,0 +1,45 @@
+﻿@page "/products"
+@using RepositoryLayer.Models
+@inject BlazorApp1.Service.IBlazorService service
+<PageTitle>Product List</PageTitle>
+
+<h1>Product List</h1>
+
+
+@if (products == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Price</th>
+                <th>Name</th>
+                <th>Description</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in products)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>@product.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Product> products = new List<Product>();
+    protected override async Task OnInitializedAsync()
+    {
+        products = (await service.GetAll()).ToList();
+    }
+
+    
+}
