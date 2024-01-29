@@ -1,11 +1,50 @@
 {
   "Version": 1,
-  "Hash": "KJSjCtwN/KhuzOcyZxnv0FXwN+v6R/4WxhDIEVWQvwY=",
+  "Hash": "srn+XkQmUI96Ab/NOkowbtez1zq+d/yfAShf7sAnVds=",
   "Source": "Blazor.APIs",
   "BasePath": "_content/Blazor.APIs",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\vpratapsawant\\.nuget\\packages\\mudblazor\\6.14.0\\staticwebassets\\MudBlazor.min.css",
+      "SourceId": "MudBlazor",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\vpratapsawant\\.nuget\\packages\\mudblazor\\6.14.0\\staticwebassets\\",
+      "BasePath": "_content/MudBlazor",
+      "RelativePath": "MudBlazor.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\vpratapsawant\\.nuget\\packages\\mudblazor\\6.14.0\\staticwebassets\\MudBlazor.min.css"
+    },
+    {
+      "Identity": "C:\\Users\\vpratapsawant\\.nuget\\packages\\mudblazor\\6.14.0\\staticwebassets\\MudBlazor.min.js",
+      "SourceId": "MudBlazor",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\vpratapsawant\\.nuget\\packages\\mudblazor\\6.14.0\\staticwebassets\\",
+      "BasePath": "_content/MudBlazor",
+      "RelativePath": "MudBlazor.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\vpratapsawant\\.nuget\\packages\\mudblazor\\6.14.0\\staticwebassets\\MudBlazor.min.js"
+    }
+  ]
 }

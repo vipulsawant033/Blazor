@@ -1,5 +1,6 @@
 ﻿@page "/products"
 @using RepositoryLayer.Models
+@using ViewModels
 @inject BlazorApp1.Service.IBlazorService service
 <PageTitle>Product List</PageTitle>
 
@@ -35,7 +36,7 @@ else
 }
 
 @code {
-    private List<Product> products = new List<Product>();
+    private List<ProductVM> products = new List<ProductVM>();
     protected override async Task OnInitializedAsync()
     {
         products = (await service.GetAll()).ToList();

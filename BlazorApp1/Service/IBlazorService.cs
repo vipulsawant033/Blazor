@@ -1,9 +1,11 @@
 ﻿using RepositoryLayer.Models;
+using ViewModels;
 
 namespace BlazorApp1.Service
 {
     public interface IBlazorService
     {
-        Task<IEnumerable<Product>> GetAll();
+        Task<List<ProductVM>>GetAll();
+        Task<int> Add(ProductVM product);
     }
 }

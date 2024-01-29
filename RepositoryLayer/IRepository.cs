@@ -9,6 +9,8 @@ namespace RepositoryLayer
 {
     public interface IRepository
     {
-        Task<IEnumerable<Product>> GetProducts();
+        Task<IQueryable<Product>> GetProducts();
+        Task<Product> AddProduct(Product product);
+
     }
 }

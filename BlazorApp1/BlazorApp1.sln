@@ -3,11 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp1", "BlazorApp1.csproj", "{1C4574C2-2621-4DA7-BE51-5380496AF0F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp1", "BlazorApp1.csproj", "{1C4574C2-2621-4DA7-BE51-5380496AF0F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryLayer", "..\RepositoryLayer\RepositoryLayer.csproj", "{71FB0DEE-4BD4-4EA6-810B-8BA3C5A33150}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryLayer", "..\RepositoryLayer\RepositoryLayer.csproj", "{71FB0DEE-4BD4-4EA6-810B-8BA3C5A33150}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.APIs", "..\Blazor.APIs\Blazor.APIs.csproj", "{AFDCC467-DF3B-415A-BC28-3B2EE3A1CF38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.APIs", "..\Blazor.APIs\Blazor.APIs.csproj", "{AFDCC467-DF3B-415A-BC28-3B2EE3A1CF38}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "..\Business\BusinessLayer.csproj", "{FD65C325-60FF-402F-8E95-2F982253A054}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewModels", "..\ViewModels\ViewModels.csproj", "{B87D1676-7A49-48A2-B809-6926419C9D4E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{14B3F48A-221C-47A5-B590-D1A1E1337C9A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +36,14 @@ Global
 		{AFDCC467-DF3B-415A-BC28-3B2EE3A1CF38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFDCC467-DF3B-415A-BC28-3B2EE3A1CF38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFDCC467-DF3B-415A-BC28-3B2EE3A1CF38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD65C325-60FF-402F-8E95-2F982253A054}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD65C325-60FF-402F-8E95-2F982253A054}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD65C325-60FF-402F-8E95-2F982253A054}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD65C325-60FF-402F-8E95-2F982253A054}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B87D1676-7A49-48A2-B809-6926419C9D4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B87D1676-7A49-48A2-B809-6926419C9D4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B87D1676-7A49-48A2-B809-6926419C9D4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B87D1676-7A49-48A2-B809-6926419C9D4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

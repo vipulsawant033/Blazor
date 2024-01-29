@@ -1,10 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RepositoryLayer.Core;
 using RepositoryLayer.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace RepositoryLayer
@@ -12,16 +9,21 @@ namespace RepositoryLayer
     public class Repository : IRepository
     {
         private readonly AppDbContext _db;
-        public Repository(AppDbContext db) 
+
+        public Repository(AppDbContext db)
         {
             _db = db;
         }
-        public async Task<IEnumerable<Product>> GetProducts()
-        {
-          return await _db.Product.ToListAsync();
 
-          //  var abc = new List<Product>();
-        //    return abc;
+        public Task<IQueryable<Product>> GetProducts()
+        {
+            return Task.FromResult(_db.Product.AsQueryable());
+        }
+        public async Task<Product> AddProduct(Product product)
+        {
+            _db.Product.Add(product);
+            await _db.SaveChangesAsync();
+            return product;
         }
     }
 }

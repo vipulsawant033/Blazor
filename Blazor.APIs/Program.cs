@@ -1,3 +1,6 @@
+using AutoMapper;
+using Blazor.APIs;
+using BusinessLayer;
 using Microsoft.EntityFrameworkCore;
 using RepositoryLayer;
 using RepositoryLayer.Core;
@@ -12,6 +15,10 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 
 });
 
+IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
+builder.Services.AddSingleton(mapper);
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSepcificRequests", builder =>
@@ -24,7 +31,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IRepository, Repository>();
-
+builder.Services.AddScoped<IBusiness, Business>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

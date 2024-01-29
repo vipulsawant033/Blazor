@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Nest;
 using RepositoryLayer.Models;
 using RepositoryLayer;
+using BusinessLayer;
+using ViewModels;
 
 namespace Blazor.APIs.Controllers
 {
@@ -11,17 +13,24 @@ namespace Blazor.APIs.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private IRepository _repository;
-        public ProductController(IRepository repository)
+        private readonly IBusiness _business;
+        public ProductController(IBusiness business)
         {
-            _repository= repository;
+            _business = business;
         }
         [HttpGet]
         [Route("GetProducts")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public async Task<ActionResult<List<ProductVM>>> GetProducts()
         {
-            var products = await _repository.GetProducts();
+            var products = await _business.GetProducts();
             return Ok(products);
+        }
+        [HttpPost]
+        [Route("AddProduct")]
+        public async Task<ActionResult<int>> AddProduct(ProductVM product)
+        {
+            var newProductId = await _business.AddProduct(product);
+            return newProductId;
         }
     }
 }

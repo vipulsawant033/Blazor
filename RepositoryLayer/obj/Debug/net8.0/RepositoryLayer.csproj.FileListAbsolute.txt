@@ -7,6 +7,7 @@ D:\Blazor learning\RepositoryLayer\obj\Debug\net8.0\RepositoryLayer.GeneratedMSB
 D:\Blazor learning\RepositoryLayer\obj\Debug\net8.0\RepositoryLayer.AssemblyInfoInputs.cache
 D:\Blazor learning\RepositoryLayer\obj\Debug\net8.0\RepositoryLayer.AssemblyInfo.cs
 D:\Blazor learning\RepositoryLayer\obj\Debug\net8.0\RepositoryLayer.csproj.CoreCompileInputs.cache
+D:\Blazor learning\RepositoryLayer\obj\Debug\net8.0\RepositoryLayer.sourcelink.json
 D:\Blazor learning\RepositoryLayer\obj\Debug\net8.0\RepositoryLayer.dll
 D:\Blazor learning\RepositoryLayer\obj\Debug\net8.0\refint\RepositoryLayer.dll
 D:\Blazor learning\RepositoryLayer\obj\Debug\net8.0\RepositoryLayer.pdb

@@ -1,0 +1,12 @@
+D:\Blazor learning\ViewModels\bin\Debug\net8.0\ViewModels.deps.json
+D:\Blazor learning\ViewModels\bin\Debug\net8.0\ViewModels.dll
+D:\Blazor learning\ViewModels\bin\Debug\net8.0\ViewModels.pdb
+D:\Blazor learning\ViewModels\obj\Debug\net8.0\ViewModels.GeneratedMSBuildEditorConfig.editorconfig
+D:\Blazor learning\ViewModels\obj\Debug\net8.0\ViewModels.AssemblyInfoInputs.cache
+D:\Blazor learning\ViewModels\obj\Debug\net8.0\ViewModels.AssemblyInfo.cs
+D:\Blazor learning\ViewModels\obj\Debug\net8.0\ViewModels.csproj.CoreCompileInputs.cache
+D:\Blazor learning\ViewModels\obj\Debug\net8.0\ViewModels.sourcelink.json
+D:\Blazor learning\ViewModels\obj\Debug\net8.0\ViewModels.dll
+D:\Blazor learning\ViewModels\obj\Debug\net8.0\refint\ViewModels.dll
+D:\Blazor learning\ViewModels\obj\Debug\net8.0\ViewModels.pdb
+D:\Blazor learning\ViewModels\obj\Debug\net8.0\ref\ViewModels.dll
