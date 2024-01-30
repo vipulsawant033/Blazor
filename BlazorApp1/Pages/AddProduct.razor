@@ -4,6 +4,7 @@
 @using ViewModels
 @inject BlazorApp1.Service.IBlazorService service
 @inject NavigationManager navigate
+@inject ISnackbar Snackbar
 
 <EditForm Model="@newProduct" OnValidSubmit="AddNewProduct">
     <DataAnnotationsValidator />
@@ -33,5 +34,6 @@
     {
         int productId = await service.Add(newProduct);
         navigate.NavigateTo("/products");
+        Snackbar.Add("Product Created successfully.", Severity.Success);
     }
 }

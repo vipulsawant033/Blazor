@@ -2,7 +2,7 @@
 @inject BlazorApp1.Service.IBlazorService service
 @inject NavigationManager navigate
 @using ViewModels
-
+@inject ISnackbar Snackbar
 
 <h3>Edit Product</h3>
 
@@ -46,5 +46,6 @@
 
         // Navigate back to the product list
         navigate.NavigateTo("/products");
+        Snackbar.Add("Product Edited successfully.", Severity.Success);
     }
 }
