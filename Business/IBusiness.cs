@@ -11,5 +11,8 @@ namespace BusinessLayer
     {
         Task<List<ProductVM>> GetProducts();
         Task<int> AddProduct(ProductVM product);
+        Task DeleteProduct(int productId);
+        Task UpdateProduct(int productId, ProductVM updatedProduct);
+        Task<ProductVM> GetProductById(int productId);
     }
 }

@@ -25,6 +25,23 @@ namespace BlazorApp1.Service
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<int>();
         }
-      
+        public async Task DeleteProduct(int productId)
+        {
+            // Make a DELETE request to delete the product
+            await _httpClient.DeleteAsync($"https://localhost:44393/api/products/DeleteProduct/{productId}");
+        }
+        public async Task<ProductVM> GetProductById(int productId)
+        {
+            var product = await _httpClient.GetFromJsonAsync<ProductVM>($"https://localhost:44393/api/products/GetProductById/{productId}");
+            return product;
+        }
+
+        public async Task UpdateProduct(ProductVM product)
+        {
+            var response = await _httpClient.PutAsJsonAsync($"https://localhost:44393/api/products/UpdateProduct/{product.Id}", product);
+            response.EnsureSuccessStatusCode();
+        }
+
+
     }
 }

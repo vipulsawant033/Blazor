@@ -39,6 +39,40 @@ namespace BusinessLayer
             var result = _repo.AddProduct(data);
             return result.Id;
         }
+        public async Task DeleteProduct(int productId)
+        {
+            await _repo.DeleteProduct(productId);
+        }
+
+        public async Task UpdateProduct(int productId, ProductVM updatedProduct)
+        {
+            var existingProduct = await _repo.GetProductById(productId);
+
+            if (existingProduct != null)
+            {
+                // Update properties of existingProduct with values from updatedProduct
+                existingProduct.Name = updatedProduct.Name;
+                existingProduct.Price = updatedProduct.Price;
+                existingProduct.Description = updatedProduct.Description;
+
+                // Save changes
+                await _repo.UpdateProduct(existingProduct);
+            }
+        }
+
+        public async Task<ProductVM> GetProductById(int productId)
+        {
+            var product = await _repo.GetProductById(productId);
+
+            if (product == null)
+            {
+                return null; 
+            }
+
+            var productVM = _mapper.Map<ProductVM>(product);
+            return productVM;
+        }
+
 
     }
 }

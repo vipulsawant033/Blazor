@@ -7,5 +7,8 @@ namespace BlazorApp1.Service
     {
         Task<List<ProductVM>>GetAll();
         Task<int> Add(ProductVM product);
+        Task DeleteProduct(int productId);
+        Task<ProductVM> GetProductById(int productId);
+        Task UpdateProduct(ProductVM product);
     }
 }

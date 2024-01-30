@@ -1,0 +1,50 @@
+﻿@page "/edit/{productId:int}"
+@inject BlazorApp1.Service.IBlazorService service
+@inject NavigationManager navigate
+@using ViewModels
+
+
+<h3>Edit Product</h3>
+
+<EditForm Model="@editedProduct" OnValidSubmit="UpdateProduct">
+    <DataAnnotationsValidator />
+    <MudGrid>
+        <MudItem xs="12" sm="7">
+            <MudCard>
+                <MudCardContent>
+                    <MudTextField Label="Product Name" HelperText="Product Name"
+                                  @bind-Value="editedProduct.Name" For="@(()=>editedProduct.Name)" InputType="InputType.Text" />
+                    <MudTextField HideSpinButtons="true" Label="Product Price" HelperText="Price"
+                                  @bind-Value="editedProduct.Price" For="@(()=>editedProduct.Price)" InputType="InputType.Number" />
+                    <MudTextField Label="Product Description" HelperText="Product Description"
+                                  @bind-Value="editedProduct.Description" For="@(()=>editedProduct.Description)" InputType="InputType.Text" />
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Update Product</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>
+
+@code {
+    private ProductVM editedProduct = new ProductVM();
+
+    [Parameter]
+    public int productId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Fetch the product by productId and assign it to editedProduct
+        editedProduct = await service.GetProductById(productId);
+    }
+
+    private async Task UpdateProduct()
+    {
+        // Call your service method to update the product
+        await service.UpdateProduct(editedProduct);
+
+        // Navigate back to the product list
+        navigate.NavigateTo("/products");
+    }
+}

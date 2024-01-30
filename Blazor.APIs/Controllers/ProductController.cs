@@ -1,10 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BusinessLayer;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Migrations;
-using Nest;
-using RepositoryLayer.Models;
-using RepositoryLayer;
-using BusinessLayer;
 using ViewModels;
 
 namespace Blazor.APIs.Controllers
@@ -14,10 +9,12 @@ namespace Blazor.APIs.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IBusiness _business;
+
         public ProductController(IBusiness business)
         {
             _business = business;
         }
+
         [HttpGet]
         [Route("GetProducts")]
         public async Task<ActionResult<List<ProductVM>>> GetProducts()
@@ -25,12 +22,37 @@ namespace Blazor.APIs.Controllers
             var products = await _business.GetProducts();
             return Ok(products);
         }
+
         [HttpPost]
         [Route("AddProduct")]
         public async Task<ActionResult<int>> AddProduct(ProductVM product)
         {
             var newProductId = await _business.AddProduct(product);
             return newProductId;
+        }
+
+        [HttpDelete]
+        [Route("DeleteProduct/{productId}")]
+        public async Task<IActionResult> DeleteProduct(int productId)
+        {
+            await _business.DeleteProduct(productId);
+            return Ok();
+        }
+
+        [HttpPut]
+        [Route("UpdateProduct/{productId}")]
+        public async Task<IActionResult> UpdateProduct(int productId, ProductVM updatedProduct)
+        {
+            await _business.UpdateProduct(productId, updatedProduct);
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("GetProductById/{productId}")]
+        public async Task<ActionResult<ProductVM>> GetProductById(int productId)
+        {
+            var product = await _business.GetProductById(productId);
+            return Ok(product);
         }
     }
 }

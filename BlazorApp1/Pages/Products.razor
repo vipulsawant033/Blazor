@@ -19,6 +19,7 @@ else
                 <th>Price</th>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Action</th>
 
             </tr>
         </thead>
@@ -29,6 +30,10 @@ else
                     <td>@product.Name</td>
                     <td>@product.Price</td>
                     <td>@product.Description</td>
+                    <td>
+                        <a href="/edit/@product.Id">Edit</a>
+                        <button @onclick="() => DeleteProduct(product.Id)">Delete</button>
+                    </td>
                 </tr>
             }
         </tbody>
@@ -41,6 +46,13 @@ else
     {
         products = (await service.GetAll()).ToList();
     }
+    private async Task DeleteProduct(int productId)
+    {
+        // Call your service method to delete the product
+        await service.DeleteProduct(productId);
 
+        // Refresh the product list after deletion
+        products = (await service.GetAll()).ToList();
+    }
     
 }
