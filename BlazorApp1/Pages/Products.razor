@@ -1,7 +1,9 @@
 ﻿@page "/products"
 @using RepositoryLayer.Models
 @using ViewModels
+@inject NavigationManager navigate
 @inject BlazorApp1.Service.IBlazorService service
+@inject IDialogService DialogService
 <PageTitle>Product List</PageTitle>
 
 <h1>Product List</h1>
@@ -31,8 +33,8 @@ else
                     <td>@product.Price</td>
                     <td>@product.Description</td>
                     <td>
-                        <a href="/edit/@product.Id">Edit</a>
-                        <button @onclick="() => DeleteProduct(product.Id)">Delete</button>
+                        <button class="btn btn-primary" @onclick="()=>NavigateToEdit(product.Id)">Edit</button>
+                        <button class="btn btn-danger" @onclick="()=>NavigateToDeleteConfirmation(product.Id)">Delete</button>
                     </td>
                 </tr>
             }
@@ -46,13 +48,16 @@ else
     {
         products = (await service.GetAll()).ToList();
     }
-    private async Task DeleteProduct(int productId)
+    private void NavigateToEdit(int id)
     {
-        // Call your service method to delete the product
-        await service.DeleteProduct(productId);
-
-        // Refresh the product list after deletion
-        products = (await service.GetAll()).ToList();
+        navigate.NavigateTo($"/edit/{id}");
+    }
+    private void NavigateToDeleteConfirmation(int productId)
+    {
+        navigate.NavigateTo($"/deleteconfirmation/{productId}");
     }
     
 }
+
+
+ 

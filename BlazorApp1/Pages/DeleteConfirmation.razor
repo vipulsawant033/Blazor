@@ -1,0 +1,76 @@
+﻿@* @page "/deleteconfirmation/{productId}"
+@page "/deleteconfirmation/{productId:int}"
+@inject NavigationManager navigate
+@inject BlazorApp1.Service.IBlazorService service
+
+<h3>Delete Confirmation</h3>
+
+<p>Are you sure you want to delete this product?</p>
+
+<button class="btn btn-primary" @onclick="DeleteProduct">Delete</button>
+<button class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+
+@code {
+    [Parameter] public int ProductId { get; set; }
+
+    private async Task DeleteProduct()
+    {
+        await service.DeleteProduct(ProductId);
+        navigate.NavigateTo("/products"); // Navigate back to the product list after deletion
+    }
+
+    private void Cancel()
+    {
+        navigate.NavigateTo("/products"); // Navigate back to the product list without deleting
+    }
+}
+ *@
+
+
+ @page "/deleteconfirmation/{productId:int}"
+@using ViewModels
+@inject BlazorApp1.Service.IBlazorService service
+@inject NavigationManager navigate
+
+<PageTitle>Delete Confirmation</PageTitle>
+
+<h3>Do you really want to delete the product?</h3>
+
+@if (product == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <h3>Name: @product.Name</h3>
+    <h3>Price: @product.Price</h3>
+
+    <button class="btn btn-primary" @onclick="DeleteProduct">Delete</button>
+    <button class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+}
+
+@code {
+    private ProductVM product;
+
+    [Parameter] public int ProductId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        product = await service.GetProductById(ProductId);
+    }
+
+    private async Task DeleteProduct()
+    {
+        // Call your service method to delete the product
+        await service.DeleteProduct(ProductId);
+
+        // Navigate back to the product list page after deletion
+        navigate.NavigateTo("/products");
+    }
+
+    private void Cancel()
+    {
+        // Navigate back to the product list page without deletion
+        navigate.NavigateTo("/products");
+    }
+}
