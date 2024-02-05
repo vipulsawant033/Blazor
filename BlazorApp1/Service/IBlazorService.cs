@@ -10,5 +10,8 @@ namespace BlazorApp1.Service
         Task DeleteProduct(int productId);
         Task<ProductVM> GetProductById(int productId);
         Task UpdateProduct(ProductVM product);
+        Task<ProductVM> GetById(int id);
+        Task<List<OrderVM>> GetAllOrders();
+        Task<List<OrderVM>> GetOrdersByProductId(int productId);
     }
 }

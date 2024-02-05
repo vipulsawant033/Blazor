@@ -43,5 +43,26 @@ namespace BlazorApp1.Service
         }
 
 
+        public async Task<ProductVM> GetById(int id)
+        {
+            return await _httpClient.GetFromJsonAsync<ProductVM>($"https://localhost:44393/api/products/{id}");
+        }
+
+
+
+        public async Task<List<OrderVM>> GetOrdersByProductId(int productId)
+        {
+            var orders = await _httpClient.GetFromJsonAsync<List<OrderVM>>($"https://localhost:44393/api/orders/GetOrdersByProductId/{productId}");
+            return orders;
+        }
+
+        public async Task<List<OrderVM>> GetAllOrders()
+        {
+            var orders = await _httpClient.GetFromJsonAsync<List<OrderVM>>("https://localhost:44393/api/orders/GetOrders");
+            return orders;
+        }
+
+
+
     }
 }

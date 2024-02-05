@@ -11,6 +11,7 @@ namespace Blazor.APIs
             var mappingConfig = new MapperConfiguration(config =>
             {
                 config.CreateMap<ProductVM, Product>().ReverseMap();
+                config.CreateMap<OrderVM, Order>().ReverseMap();
             });
             return mappingConfig;
         }

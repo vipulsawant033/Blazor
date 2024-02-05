@@ -37,7 +37,7 @@ namespace Blazor.APIs.Controllers
         {
             await _business.DeleteProduct(productId);
             return Ok();
-        }
+        } 
 
         [HttpPut]
         [Route("UpdateProduct/{productId}")]
@@ -54,5 +54,14 @@ namespace Blazor.APIs.Controllers
             var product = await _business.GetProductById(productId);
             return Ok(product);
         }
+
+        [HttpGet]
+        [Route("{Id}")]
+        public async Task<ActionResult<ProductVM>> GetById(int Id)
+        {
+            var product = await _business.GetOrderById(Id);
+            return Ok(product);
+        }
+
     }
 }

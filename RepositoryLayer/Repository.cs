@@ -15,9 +15,10 @@ namespace RepositoryLayer
             _db = db;
         }
 
-        public Task<IQueryable<Product>> GetProducts()
+        public IQueryable<Product> GetProducts()
         {
-            return Task.FromResult(_db.Product.AsQueryable());
+            //return Task.FromResult(_db.Product.AsQueryable());
+            return _db.Product;
         }
 
         public async Task<Product> AddProduct(Product product)
@@ -46,6 +47,23 @@ namespace RepositoryLayer
         {
             _db.Entry(product).State = EntityState.Modified;
             await _db.SaveChangesAsync();
+        }
+      
+
+
+            public IQueryable<Order> GetOrders()
+            {
+                return _db.Order;
+            }
+
+        public async Task<List<Order>> GetOrderById(int productId)
+        {
+            return await _db.Order.Where(o => o.ProductId == productId).ToListAsync();
+        }
+
+        public async Task<List<Order>> GetOrdersByProductId(int productId)
+        {
+            return await _db.Order.Where(o => o.ProductId == productId).ToListAsync();
         }
     }
 }

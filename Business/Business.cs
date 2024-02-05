@@ -12,17 +12,17 @@ namespace BusinessLayer
     {
         private readonly IRepository _repo;
         private readonly IMapper _mapper;
-
         public Business(IRepository repo, IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
+           
         }
 
         public async Task<List<ProductVM>> GetProducts()
         {
             // Await the Task<IQueryable<Product>> to get the actual IQueryable<Product>
-            var data = await _repo.GetProducts();
+            var data =  _repo.GetProducts();
 
             // Use ToListAsync on the IQueryable<Product> result
             var products = await data.ToListAsync();
@@ -62,17 +62,47 @@ namespace BusinessLayer
 
         public async Task<ProductVM> GetProductById(int productId)
         {
-            var product = await _repo.GetProductById(productId);
+            // var product = await _repo.GetProductById(productId);
+            var product = await _repo.GetProducts().Where(x => x.Id == productId).FirstOrDefaultAsync();
 
             if (product == null)
             {
-                return null; 
+                return null;
             }
 
             var productVM = _mapper.Map<ProductVM>(product);
             return productVM;
         }
 
+        public async Task<ProductVM> GetOrderById(int id)
+        {
+            var data = await _repo.GetProducts().Include(x=>x.Orders).Where(x=> x.Id == id).FirstOrDefaultAsync();
+
+         
+            var products = _mapper.Map<Product, ProductVM>(data);
+
+
+            return products;
+        }
+
+
+        public async Task<List<OrderVM>> GetOrders()
+        {
+      
+            var data = _repo.GetOrders();
+
+            var orders = await data.ToListAsync();
+
+            var orderVMs = _mapper.Map<List<OrderVM>>(orders);
+
+            return orderVMs;
+        }
+        public async Task<List<OrderVM>> GetOrdersByProductId(int productId)
+        {
+            var orders = await _repo.GetOrdersByProductId(productId);
+            var orderVMs = _mapper.Map<List<OrderVM>>(orders);
+            return orderVMs;
+        }
 
     }
 }

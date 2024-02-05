@@ -1,0 +1,64 @@
+﻿@page "/fetch/{productId:int}"
+@using RepositoryLayer.Models
+@using ViewModels
+@inject NavigationManager navigate
+@inject BlazorApp1.Service.IBlazorService service
+@inject IDialogService dialogService
+@using MudBlazor
+@inject ISnackbar Snackbar
+
+<h3>FetchProduct</h3>
+<MudContainer Class="mt-4">
+    <MudPaper Class="p-4 px-md-6">
+        <MudCardHeader Typo="Typo.h5" Align="Align.Center">Product Details</MudCardHeader>
+
+        @if (orders != null && orders.Any())
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Order By</th>
+                        <!-- New column for actions -->
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in orders)
+                    {
+                        <tr>
+                            <!-- Modify this line to display the correct information from OrderVM -->
+                            <td>@order.ProductId</td>
+                            <td>@order.OrderBy</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <MudAlert Severity="Severity.Error" Class="mt-3">Orders not found for the product.</MudAlert>
+        }
+
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mt-4" @onclick="NavigateBack">
+            Back to Products
+        </MudButton>
+    </MudPaper>
+</MudContainer>
+
+@code {
+    [Parameter]
+    public int productId { get; set; }
+    private ProductVM product;
+    private List<OrderVM> orders = new List<OrderVM>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine($"ProductId in OnInitializedAsync: {productId}");
+        orders = (await service.GetOrdersByProductId(productId)).ToList();
+    }
+
+    private void NavigateBack()
+    {
+        navigate.NavigateTo("/products");
+    }
+}

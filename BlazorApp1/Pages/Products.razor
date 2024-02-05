@@ -3,7 +3,7 @@
 @using ViewModels
 @inject NavigationManager navigate
 @inject BlazorApp1.Service.IBlazorService service
-@inject IDialogService DialogService
+@inject IDialogService dialogService
 <PageTitle>Product List</PageTitle>
 
 <h1>Product List</h1>
@@ -18,8 +18,8 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>Price</th>
                 <th>Name</th>
+                <th>Price</th>
                 <th>Description</th>
                 <th>Action</th>
 
@@ -29,12 +29,13 @@ else
             @foreach (var product in products)
             {
                 <tr>
-                    <td>@product.Name</td>
+                    <td><a href="@($"fetch/{product.Id}")">@product.Name</a></td>
                     <td>@product.Price</td>
                     <td>@product.Description</td>
                     <td>
                         <button class="btn btn-primary" @onclick="()=>NavigateToEdit(product.Id)">Edit</button>
                         <button class="btn btn-danger" @onclick="()=>NavigateToDeleteConfirmation(product.Id)">Delete</button>
+                     
                     </td>
                 </tr>
             }
@@ -56,6 +57,8 @@ else
     {
         navigate.NavigateTo($"/deleteconfirmation/{productId}");
     }
+
+   
     
 }
 
