@@ -1,0 +1,68 @@
+﻿@page "/orders"
+@using RepositoryLayer.Models
+@using ViewModels
+@inject BlazorApp1.Service.IBlazorService service
+@inject NavigationManager navigate
+@inject IDialogService dialogService
+@inject ISnackbar Snackbar
+<PageTitle>Order List</PageTitle>
+
+<h1>Order List</h1>
+
+@if (orders == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Order By</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in orders)
+            {
+                <tr>
+                    <td>@order.ProductId</td>
+                    <td>@order.OrderBy</td>
+                    <td>
+                        <button class="btn btn-danger" @onclick="()=>DeleteOrder(order.Id)">Delete</button>
+
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<OrderVM> orders = new List<OrderVM>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        orders = (await service.GetAllOrders()).ToList();
+    }
+    private async Task DeleteOrder(int orderId)
+    {
+        var result = await dialogService.ShowMessageBox(
+            "Delete Product",
+            "Are you sure you want to delete this order?",
+            yesText: "Delete",
+            cancelText: "Cancel");
+
+        if (result == true)
+        {
+            // Call your service method to delete the product
+            await service.DeleteOrder(orderId);
+            Snackbar.Add("Order deleted successfully.", Severity.Error);
+
+            // Refresh the product list after deletion
+            orders = (await service.GetAllOrders()).ToList();
+        }
+    }
+}

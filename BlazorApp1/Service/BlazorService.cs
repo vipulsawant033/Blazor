@@ -62,7 +62,17 @@ namespace BlazorApp1.Service
             return orders;
         }
 
+        public async Task<int> AddOrder(int productId, OrderVM order)
+        {
+            var response = await _httpClient.PostAsJsonAsync($"https://localhost:44393/api/orders/addorder?productId={productId}", order);
 
+            return await response.Content.ReadFromJsonAsync<int>();
+        }
+        public async Task DeleteOrder(int orderId)
+        {
+            // Make a DELETE request to delete the product
+            await _httpClient.DeleteAsync($"https://localhost:44393/api/orders/DeleteOrder/{orderId}");
+        }
 
     }
 }

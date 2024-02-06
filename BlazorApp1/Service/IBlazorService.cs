@@ -13,5 +13,7 @@ namespace BlazorApp1.Service
         Task<ProductVM> GetById(int id);
         Task<List<OrderVM>> GetAllOrders();
         Task<List<OrderVM>> GetOrdersByProductId(int productId);
+        Task<int> AddOrder(int productId, OrderVM order);
+        Task DeleteOrder(int orderId);
     }
 }

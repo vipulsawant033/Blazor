@@ -1,0 +1,60 @@
+﻿@page "/addorder/{productId:int}"
+@using RepositoryLayer.Models
+@using ViewModels
+@inject NavigationManager navigate
+@inject BlazorApp1.Service.IBlazorService service
+@inject IDialogService dialogService
+@inject ISnackbar Snackbar
+
+<h3>Add Order</h3>
+
+@* <div>
+    <p>Product ID: @productId</p>
+    <label for="orderName">Order Name:</label>
+    <input type="text" id="orderName" @bind="orderName" />
+    <button class="btn btn-primary" @onclick="AddOrderAsync">Add Order</button>
+</div> *@
+<MudContainer Class="mt-4" MaxWidth.Medium>
+    <MudPaper Class="p-4 px-md-6">
+        <MudText Typo="Typo.h6">Product ID: @productId</MudText>
+        <MudTextField @bind-Value="orderName" Label="Add Order" Variant="Variant.Outlined"></MudTextField>
+            <MudButton Variant="Variant.Filled" Color="Color.Success" Class="mt-4" @onclick="AddOrderAsync">
+                Add Order
+            </MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mt-4" @onclick="NavigateBack">
+            Back to Products
+        </MudButton>
+    </MudPaper>
+</MudContainer>
+
+
+@code {
+    [Parameter]
+    public int productId { get; set; }
+
+    private string orderName;
+    private OrderVM order = new OrderVM();
+
+    private async Task AddOrderAsync()
+    {
+        try
+        {
+            order.ProductId = productId;
+            order.OrderBy = orderName;
+
+            var orderId = await service.AddOrder(productId, order);
+
+            Snackbar.Add("Order Created successfully.", Severity.Success);
+             navigate.NavigateTo($"/products");
+        }
+        catch (Exception ex)
+        {
+            // Handle exceptions or show an error message
+            await dialogService.ShowMessageBox("Error", $"Failed to add order. {ex.Message}");
+        }
+    }
+    private void NavigateBack()
+    {
+        navigate.NavigateTo("/products");
+    }
+}

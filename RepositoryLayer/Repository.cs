@@ -65,5 +65,23 @@ namespace RepositoryLayer
         {
             return await _db.Order.Where(o => o.ProductId == productId).ToListAsync();
         }
+        public async Task<Order> AddOrder(Order order)
+        {
+            _db.Order.Add(order);
+            await _db.SaveChangesAsync();
+            return order;
+        }
+
+        public async Task DeleteOrder(int orderId)
+        {
+            var orderToDelete = await _db.Order.FindAsync(orderId);
+            if (orderToDelete != null)
+            {
+                _db.Order.Remove(orderToDelete);
+                await _db.SaveChangesAsync();
+            }
+        }
+
+
     }
 }

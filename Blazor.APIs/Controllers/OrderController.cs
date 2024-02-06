@@ -31,5 +31,19 @@ namespace Blazor.APIs.Controllers
             var orders = await _business.GetOrdersByProductId(productId);
             return Ok(orders);
         }
+
+        [HttpPost("addorder")]
+        public async Task<IActionResult> AddOrder([FromQuery] int productId, [FromBody] OrderVM order)
+        {
+            var orderId = await _business.AddOrder(productId, order);
+            return Ok(orderId);
+        }
+        [HttpDelete]
+        [Route("DeleteOrder/{orderId}")]
+        public async Task<IActionResult> DeleteOrder(int orderId)
+        {
+            await _business.DeleteOrder(orderId);
+            return Ok();
+        }
     }
 }

@@ -103,6 +103,38 @@ namespace BusinessLayer
             var orderVMs = _mapper.Map<List<OrderVM>>(orders);
             return orderVMs;
         }
+        public async Task<int> AddOrder(int productId, OrderVM order)
+        {
+            // Validate if the product exists
+            var existingProduct = await _repo.GetProductById(productId);
+            if (existingProduct == null)
+            {
+                throw new InvalidOperationException($"Product with ID {productId} not found.");
+            }
+
+            // Validate if the order data is valid
+            if (order == null)
+            {
+                throw new InvalidOperationException("Invalid order data.");
+            }
+
+            // Map the OrderVM to the Order model
+            var orderToAdd = _mapper.Map<Order>(order);
+
+            // Associate the order with the existing product
+            orderToAdd.ProductId = productId;
+
+            // Add the order to the repository
+            var addedOrder = await _repo.AddOrder(orderToAdd);
+
+            // You may return the ID of the added order
+            return addedOrder.Id;
+        }
+
+        public async Task DeleteOrder(int orderId)
+        {
+            await _repo.DeleteOrder(orderId);
+        }
 
     }
 }
