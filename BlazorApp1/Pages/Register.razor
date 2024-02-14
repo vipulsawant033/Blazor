@@ -1,0 +1,88 @@
+﻿@page "/register"
+@using System.ComponentModel.DataAnnotations
+@using RepositoryLayer.Models
+@using ViewModels
+@inject BlazorApp1.Service.IBlazorService service
+@inject NavigationManager navigate
+@inject IDialogService dialogService
+@inject ISnackbar Snackbar
+
+<EditForm Model="@model" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <MudGrid>
+        <MudItem xs="12" sm="7">
+            <MudCard>
+                <MudCardContent>
+                    
+                    <MudTextField Label="Email" Class="mt-3"
+                                  @bind-Value="model.Email" For="@(() => model.Email)" />
+                    <MudTextField Label="Password" HelperText="Choose a strong password" Class="mt-3"
+                                  @bind-Value="model.Password" For="@(() => model.Password)" InputType="InputType.Password" />
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Register</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+        <MudItem xs="12" sm="5">
+            <MudPaper Class="pa-4 mud-height-full">
+                <MudText Typo="Typo.subtitle2">Validation Summary</MudText>
+                @if (success)
+                {
+                    <MudText Color="Color.Success">Success</MudText>
+                }
+                else
+                {
+                    <MudText Color="@Color.Error">
+                        <ValidationSummary />
+                    </MudText>
+                }
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12">
+            <MudText Typo="Typo.body2" Align="Align.Center">
+                Fill out the form correctly to see the success message.
+            </MudText>
+        </MudItem>
+    </MudGrid>
+</EditForm>
+
+@code {
+    RegisterAccountForm model = new RegisterAccountForm();
+    bool success;
+
+    public class RegisterAccountForm
+    {
+
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(30, ErrorMessage = "Password must be at least 8 characters long.", MinimumLength = 8)]
+        public string Password { get; set; }
+
+    }
+
+    private async Task OnValidSubmit(EditContext context)
+    {
+        try
+        {
+            // Call the service method to register the user
+            var userId = await service.RegisterUser(model);
+
+            // Registration successful
+            success = true;
+            Snackbar.Add("Registration successful!", Severity.Success);
+            // Redirect or perform any other action upon successful registration
+            navigate.NavigateTo("/success");
+        }
+        catch (Exception ex)
+        {
+            // Handle registration failure
+            success = false;
+            Snackbar.Add("Registration failed. Please try again.", Severity.Error);
+            Console.WriteLine($"Error registering user: {ex.Message}");
+        }
+    }
+}

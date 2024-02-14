@@ -16,6 +16,8 @@ namespace RepositoryLayer.Core
         public DbSet<Product> Product { get; set; }
         public DbSet<Order> Order { get; set; }
 
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

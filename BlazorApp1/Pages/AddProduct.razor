@@ -14,8 +14,10 @@
                 <MudCardContent>
                     <MudTextField Label="Product Name" HelperText="Product Name"
                                   @bind-Value="newProduct.Name" For="@(()=>newProduct.Name)" InputType="InputType.Text" />
-                    <MudTextField HideSpinButtons="true" Label="Product Price" HelperText="Price"
-                                  @bind-Value="newProduct.Price" For="@(()=>newProduct.Price)" InputType="InputType.Number" />
+                    @* <MudTextField HideSpinButtons="true" Label="Product Price" HelperText="Price"
+                                  @bind-Value="newProduct.Price" For="@(()=>newProduct.Price)" InputType="InputType.Number" /> *@
+                                  <MudTextField HideSpinButtons="true" Label="Product Price" HelperText="Price" @bind-Value="newProduct.Price" For="@(()=>newProduct.Price)" InputType="InputType.Number" />
+
                     <MudTextField Label="Product Description" HelperText="Product Description"
                                   @bind-Value="newProduct.Description" For="@(()=>newProduct.Description)" InputType="InputType.Text" />
 

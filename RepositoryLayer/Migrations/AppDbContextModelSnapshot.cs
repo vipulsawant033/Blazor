@@ -38,6 +38,8 @@ namespace RepositoryLayer.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProductId");
+
                     b.ToTable("Order");
 
                     b.HasData(
@@ -64,12 +66,6 @@ namespace RepositoryLayer.Migrations
                             Id = 4,
                             OrderBy = "Deepak",
                             ProductId = 2
-                        },
-                        new
-                        {
-                            Id = 5,
-                            OrderBy = "Piyush",
-                            ProductId = 3
                         });
                 });
 
@@ -111,6 +107,45 @@ namespace RepositoryLayer.Migrations
                             Name = "Product2",
                             Price = 2000
                         });
+                });
+
+            modelBuilder.Entity("RepositoryLayer.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("User");
+                });
+
+            modelBuilder.Entity("RepositoryLayer.Models.Order", b =>
+                {
+                    b.HasOne("RepositoryLayer.Models.Product", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("RepositoryLayer.Models.Product", b =>
+                {
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

@@ -18,6 +18,9 @@ D:\Blazor learning\Blazor.APIs\bin\Debug\net8.0\Microsoft.AspNetCore.Authorizati
 D:\Blazor learning\Blazor.APIs\bin\Debug\net8.0\Microsoft.AspNetCore.Components.dll
 D:\Blazor learning\Blazor.APIs\bin\Debug\net8.0\Microsoft.AspNetCore.Components.Forms.dll
 D:\Blazor learning\Blazor.APIs\bin\Debug\net8.0\Microsoft.AspNetCore.Components.Web.dll
+D:\Blazor learning\Blazor.APIs\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\Blazor learning\Blazor.APIs\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\Blazor learning\Blazor.APIs\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 D:\Blazor learning\Blazor.APIs\bin\Debug\net8.0\Microsoft.AspNetCore.Metadata.dll
 D:\Blazor learning\Blazor.APIs\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 D:\Blazor learning\Blazor.APIs\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
@@ -31,6 +34,8 @@ D:\Blazor learning\Blazor.APIs\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.De
 D:\Blazor learning\Blazor.APIs\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
 D:\Blazor learning\Blazor.APIs\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 D:\Blazor learning\Blazor.APIs\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+D:\Blazor learning\Blazor.APIs\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+D:\Blazor learning\Blazor.APIs\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
 D:\Blazor learning\Blazor.APIs\bin\Debug\net8.0\Microsoft.Extensions.Localization.dll
 D:\Blazor learning\Blazor.APIs\bin\Debug\net8.0\Microsoft.Extensions.Localization.Abstractions.dll
 D:\Blazor learning\Blazor.APIs\bin\Debug\net8.0\Microsoft.Extensions.Options.dll

@@ -19,5 +19,6 @@ namespace BusinessLayer
         Task<List<OrderVM>> GetOrdersByProductId(int productId);
         Task<int> AddOrder(int productId, OrderVM order);
         Task DeleteOrder(int orderId);
+      
     }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "hm9DoqNQdnfYktrO53LIAQzZh63W1kIK5264eoqfHxc+c7Pku7Z+mhiBf1GY8U5Odr8jEGfiMM/x5UtTSZ2IpQ==",
+  "dgSpecHash": "4ZD/u/TNI/+poBGtR231rjX8CDwhwoGtIvT8nPVkfnJ4CNgA7i2A2vevrmgmfDBv0uL/O2Eggl7/Ud0ZKNPyEQ==",
   "success": true,
   "projectFilePath": "D:\\Blazor learning\\Blazor.APIs\\Blazor.APIs.csproj",
   "expectedPackageFiles": [
@@ -17,6 +17,9 @@
     "C:\\Users\\vpratapsawant\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\8.0.1\\microsoft.aspnetcore.components.analyzers.8.0.1.nupkg.sha512",
     "C:\\Users\\vpratapsawant\\.nuget\\packages\\microsoft.aspnetcore.components.forms\\8.0.1\\microsoft.aspnetcore.components.forms.8.0.1.nupkg.sha512",
     "C:\\Users\\vpratapsawant\\.nuget\\packages\\microsoft.aspnetcore.components.web\\8.0.1\\microsoft.aspnetcore.components.web.8.0.1.nupkg.sha512",
+    "C:\\Users\\vpratapsawant\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\8.0.1\\microsoft.aspnetcore.cryptography.internal.8.0.1.nupkg.sha512",
+    "C:\\Users\\vpratapsawant\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\8.0.1\\microsoft.aspnetcore.cryptography.keyderivation.8.0.1.nupkg.sha512",
+    "C:\\Users\\vpratapsawant\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\8.0.1\\microsoft.aspnetcore.identity.entityframeworkcore.8.0.1.nupkg.sha512",
     "C:\\Users\\vpratapsawant\\.nuget\\packages\\microsoft.aspnetcore.metadata\\8.0.1\\microsoft.aspnetcore.metadata.8.0.1.nupkg.sha512",
     "C:\\Users\\vpratapsawant\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "C:\\Users\\vpratapsawant\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.4\\microsoft.codeanalysis.analyzers.3.3.4.nupkg.sha512",
@@ -41,6 +44,8 @@
     "C:\\Users\\vpratapsawant\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0\\microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
     "C:\\Users\\vpratapsawant\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\vpratapsawant\\.nuget\\packages\\microsoft.extensions.dependencymodel\\8.0.0\\microsoft.extensions.dependencymodel.8.0.0.nupkg.sha512",
+    "C:\\Users\\vpratapsawant\\.nuget\\packages\\microsoft.extensions.identity.core\\8.0.1\\microsoft.extensions.identity.core.8.0.1.nupkg.sha512",
+    "C:\\Users\\vpratapsawant\\.nuget\\packages\\microsoft.extensions.identity.stores\\8.0.1\\microsoft.extensions.identity.stores.8.0.1.nupkg.sha512",
     "C:\\Users\\vpratapsawant\\.nuget\\packages\\microsoft.extensions.localization\\8.0.1\\microsoft.extensions.localization.8.0.1.nupkg.sha512",
     "C:\\Users\\vpratapsawant\\.nuget\\packages\\microsoft.extensions.localization.abstractions\\8.0.1\\microsoft.extensions.localization.abstractions.8.0.1.nupkg.sha512",
     "C:\\Users\\vpratapsawant\\.nuget\\packages\\microsoft.extensions.logging\\8.0.0\\microsoft.extensions.logging.8.0.0.nupkg.sha512",

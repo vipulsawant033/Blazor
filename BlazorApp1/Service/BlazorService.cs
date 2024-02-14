@@ -1,6 +1,11 @@
 ﻿using RepositoryLayer.Models;
 using System.Net.Http.Json;
+using System.Text.Json;
+using System.Text;
 using ViewModels;
+using static BlazorApp1.Pages.Register;
+using BlazorApp1;
+using RepositoryLayer.Migrations;
 
 namespace BlazorApp1.Service
 {
@@ -72,6 +77,40 @@ namespace BlazorApp1.Service
         {
             // Make a DELETE request to delete the product
             await _httpClient.DeleteAsync($"https://localhost:44393/api/orders/DeleteOrder/{orderId}");
+        }
+
+        public async Task<int> RegisterUser(RegisterAccountForm user)
+        {
+            try
+            {
+                // Serialize the user object to JSON
+                var jsonUser = JsonSerializer.Serialize(user);
+
+                // Create a StringContent object with the JSON data
+                var content = new StringContent(jsonUser, Encoding.UTF8, "application/json");
+
+                // Send a POST request to the registration endpoint
+                var response = await _httpClient.PostAsync("https://localhost:44393/register", content);
+
+                // Ensure the request was successful
+                response.EnsureSuccessStatusCode();
+
+                if(response.IsSuccessStatusCode)
+                {
+                    return 1;
+                }
+                // Read the response content as JSON and deserialize it to an integer
+               
+
+                // Return the user ID
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions here
+                Console.WriteLine($"Error registering user: {ex.Message}");
+                throw;
+            }
         }
 
     }

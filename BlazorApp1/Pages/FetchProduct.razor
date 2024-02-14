@@ -1,42 +1,49 @@
 ﻿@page "/fetch/{productId:int}"
 @using RepositoryLayer.Models
 @using ViewModels
-@inject NavigationManager navigate
 @inject BlazorApp1.Service.IBlazorService service
+@inject NavigationManager navigate
 @inject IDialogService dialogService
-@using MudBlazor
 @inject ISnackbar Snackbar
 
 <h3>Orders of Product</h3>
+
 <MudContainer Class="mt-4">
     <MudPaper Class="p-4 px-md-6">
-        
-
-        @if (orders != null && orders.Any())
+        @if (product != null)
         {
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Product ID</th>
-                        <th>Order By</th>
-                        <!-- New column for actions -->
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Description</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var order in orders)
-                    {
-                        <tr>
-                            <!-- Modify this line to display the correct information from OrderVM -->
-                            <td>@order.ProductId</td>
-                            <td>@order.OrderBy</td>
-                        </tr>
-                    }
+                    <tr>
+                        <td>@product.Name</td>
+                        <td>@product.Price</td>
+                        <td>@product.Description</td>
+                    </tr>
                 </tbody>
             </table>
+            <h4>Order by</h4>
+            @if (orders != null && orders.Any())
+            {
+                @foreach (var order in orders)
+                {
+                    <div>@order.OrderBy</div>
+                }
+            }
+            else
+            {
+                <div>No orders found for this product.</div>
+            }
         }
         else
         {
-            <MudAlert Severity="Severity.Error" Class="mt-3">Orders not found for the product.</MudAlert>
+            <MudAlert Severity="Severity.Error" Class="mt-3">Product not found.</MudAlert>
         }
 
         <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mt-4" @onclick="NavigateBack">
@@ -46,15 +53,17 @@
 </MudContainer>
 
 @code {
+
     [Parameter]
     public int productId { get; set; }
+
     private ProductVM product;
     private List<OrderVM> orders = new List<OrderVM>();
 
     protected override async Task OnInitializedAsync()
     {
-        Console.WriteLine($"ProductId in OnInitializedAsync: {productId}");
-        orders = (await service.GetOrdersByProductId(productId)).ToList();
+        product = await service.GetProductById(productId);
+        orders = await service.GetOrdersByProductId(productId);
     }
 
     private void NavigateBack()

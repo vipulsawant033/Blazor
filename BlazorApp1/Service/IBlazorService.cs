@@ -1,5 +1,6 @@
 ﻿using RepositoryLayer.Models;
 using ViewModels;
+using static BlazorApp1.Pages.Register;
 
 namespace BlazorApp1.Service
 {
@@ -15,5 +16,6 @@ namespace BlazorApp1.Service
         Task<List<OrderVM>> GetOrdersByProductId(int productId);
         Task<int> AddOrder(int productId, OrderVM order);
         Task DeleteOrder(int orderId);
+        Task<int> RegisterUser(RegisterAccountForm user);
     }
 }
