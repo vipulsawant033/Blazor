@@ -81,78 +81,78 @@ namespace BlazorApp1.Service
             await _httpClient.DeleteAsync($"https://localhost:44393/api/orders/DeleteOrder/{orderId}");
         }
 
-        public async Task<int> RegisterUser(RegisterAccountForm user)
-        {
-            try
-            {
-                // Serialize the user object to JSON
-                var jsonUser = JsonSerializer.Serialize(user);
+        //public async Task<int> RegisterUser(RegisterAccountForm user)
+        //{
+        //    try
+        //    {
+        //        // Serialize the user object to JSON
+        //        var jsonUser = JsonSerializer.Serialize(user);
 
-                // Create a StringContent object with the JSON data
-                var content = new StringContent(jsonUser, Encoding.UTF8, "application/json");
+        //        // Create a StringContent object with the JSON data
+        //        var content = new StringContent(jsonUser, Encoding.UTF8, "application/json");
 
-                // Send a POST request to the registration endpoint
-                var response = await _httpClient.PostAsync("https://localhost:44393/register", content);
+        //        // Send a POST request to the registration endpoint
+        //        var response = await _httpClient.PostAsync("https://localhost:44393/register", content);
 
-                // Ensure the request was successful
-                response.EnsureSuccessStatusCode();
+        //        // Ensure the request was successful
+        //        response.EnsureSuccessStatusCode();
 
-                if(response.IsSuccessStatusCode)
-                {
-                    return 1;
-                }
-                // Read the response content as JSON and deserialize it to an integer
+        //        if(response.IsSuccessStatusCode)
+        //        {
+        //            return 1;
+        //        }
+        //        // Read the response content as JSON and deserialize it to an integer
                
 
-                // Return the user ID
-                return 0;
-            }
-            catch (Exception ex)
-            {
-                // Handle exceptions here
-                Console.WriteLine($"Error registering user: {ex.Message}");
-                throw;
-            }
-        }
+        //        // Return the user ID
+        //        return 0;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Handle exceptions here
+        //        Console.WriteLine($"Error registering user: {ex.Message}");
+        //        throw;
+        //    }
+        //}
 
-        public async Task<int> LoginUser(LoginAccountForm user)
-        {
-            try
-            {
-                // Serialize the user object to JSON
-                var jsonUser = JsonSerializer.Serialize(user);
+        //public async Task<int> LoginUser(LoginAccountForm user)
+        //{
+        //    try
+        //    {
+        //        // Serialize the user object to JSON
+        //        var jsonUser = JsonSerializer.Serialize(user);
 
-                // Create a StringContent object with the JSON data
-                var content = new StringContent(jsonUser, Encoding.UTF8, "application/json");
+        //        // Create a StringContent object with the JSON data
+        //        var content = new StringContent(jsonUser, Encoding.UTF8, "application/json");
 
-                // Send a POST request to the login endpoint
-                var response = await _httpClient.PostAsync("https://localhost:44393/login?useCookies=false&useSessionCookies=false", content);
+        //        // Send a POST request to the login endpoint
+        //        var response = await _httpClient.PostAsync("https://localhost:44393/login?useCookies=false&useSessionCookies=false", content);
 
-                // Ensure the request was successful
-                response.EnsureSuccessStatusCode();
+        //        // Ensure the request was successful
+        //        response.EnsureSuccessStatusCode();
 
-                // Read the response content as JSON
-                var responseContent = await response.Content.ReadAsStringAsync();
+        //        // Read the response content as JSON
+        //        var responseContent = await response.Content.ReadAsStringAsync();
 
-                // Deserialize the response content into the appropriate type
-                // Adjust the deserialization logic based on your API response structure
-                var loginResponse = JsonSerializer.Deserialize<LoginResponse>(responseContent);
-                response.EnsureSuccessStatusCode();
+        //        // Deserialize the response content into the appropriate type
+        //        // Adjust the deserialization logic based on your API response structure
+        //        var loginResponse = JsonSerializer.Deserialize<LoginResponse>(responseContent);
+        //        response.EnsureSuccessStatusCode();
 
-                // Return the user ID from the login response
-                if (response.IsSuccessStatusCode)
-                {
-                    return 1;
-                }
-                return 0;
-            }
-            catch (Exception ex)
-            {
-                // Handle exceptions here
-                Console.WriteLine($"Error logging in user: {ex.Message}");
-                throw;
-            }
-        }
+        //        // Return the user ID from the login response
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            return 1;
+        //        }
+        //        return 0;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Handle exceptions here
+        //        Console.WriteLine($"Error logging in user: {ex.Message}");
+        //        throw;
+        //    }
+        //}
 
     }
 }

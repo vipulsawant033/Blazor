@@ -1,4 +1,6 @@
 ﻿@page "/products"
+@inject BlazorApp1.Service.IAuthenticationService AuthenticationService
+@using BlazorApp1.Service
 @using RepositoryLayer.Models
 @using ViewModels
 @inject NavigationManager navigate
@@ -7,45 +9,52 @@
 <PageTitle>Product List</PageTitle>
 
 <h1>Product List</h1>
-
-
-@if (products == null)
+@if (!AuthenticationService.IsAuthenticated)
 {
-    <p><em>Loading...</em></p>
+
+    <p>You are not authenticated. Please log in.</p>
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Description</th>
-                <th>Action</th>
-                <th>Add Order</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var product in products)
-            {
+    @if (products == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
                 <tr>
-                    <td><a href="@($"fetch/{product.Id}")">@product.Name</a></td>
-                    <td>@product.Price</td>
-                    <td>@product.Description</td>
-                    <td>
-                        <button class="btn btn-primary" @onclick="()=>NavigateToEdit(product.Id)">Edit</button>
-                        <button class="btn btn-danger" @onclick="()=>NavigateToDeleteConfirmation(product.Id)">Delete</button>
-                     
-                    </td>
-                    <td>
-                        <button class="btn btn-success" @onclick="()=>NavigateToAddOrder(product.Id)">Add Order</button>
-                    </td>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                    <th>Add Order</th>
+
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var product in products)
+                {
+                    <tr>
+                        <td><a href="@($"fetch/{product.Id}")">@product.Name</a></td>
+                        <td>@product.Price</td>
+                        <td>@product.Description</td>
+                        <td>
+                            <button class="btn btn-primary" @onclick="()=>NavigateToEdit(product.Id)">Edit</button>
+                            <button class="btn btn-danger" @onclick="()=>NavigateToDeleteConfirmation(product.Id)">Delete</button>
+
+                        </td>
+                        <td>
+                            <button class="btn btn-success" @onclick="()=>NavigateToAddOrder(product.Id)">Add Order</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
 }
+
 
 @code {
     private List<ProductVM> products = new List<ProductVM>();

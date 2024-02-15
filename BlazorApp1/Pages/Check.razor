@@ -1,0 +1,14 @@
+﻿@inject BlazorApp1.Service.IAuthenticationService AuthenticationService
+@page "/secured-page"
+@using BlazorApp1.Service
+
+<h3>Secured Page</h3>
+
+@if (!AuthenticationService.IsAuthenticated)
+{
+    <p>You are not authenticated. Please log in.</p>
+}
+else
+{
+    <p>This is a secured page content.</p>
+}

@@ -17,7 +17,7 @@ namespace BlazorApp1.Service
         Task<List<OrderVM>> GetOrdersByProductId(int productId);
         Task<int> AddOrder(int productId, OrderVM order);
         Task DeleteOrder(int orderId);
-        Task<int> RegisterUser(RegisterAccountForm user);
-        Task<int> LoginUser(LoginAccountForm user);
+        //Task<int> RegisterUser(RegisterAccountForm user);
+        //Task<int> LoginUser(LoginAccountForm user);
     }
 }
