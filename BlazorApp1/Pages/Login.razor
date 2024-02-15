@@ -1,1 +1,86 @@
-﻿
+﻿@page "/login"
+@using RepositoryLayer.Models
+@using System.ComponentModel.DataAnnotations
+@using ViewModels
+@inject BlazorApp1.Service.IBlazorService service
+@inject NavigationManager navigate
+@inject IDialogService dialogService
+@inject ISnackbar Snackbar
+
+<EditForm Model="@model" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <MudGrid>
+        <MudItem xs="12" sm="7">
+            <MudCard>
+                <MudCardContent>
+                    <MudTextField Label="Email" Class="mt-3"
+                                  @bind-Value="model.Email" For="@(() => model.Email)" />
+                    <MudTextField Label="Password" HelperText="Enter your password" Class="mt-3"
+                                  @bind-Value="model.Password" For="@(() => model.Password)" InputType="InputType.Password" />
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Login</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+        <MudItem xs="12" sm="5">
+            <MudPaper Class="pa-4 mud-height-full">
+                <MudText Typo="Typo.subtitle2">Validation Summary</MudText>
+                @if (success)
+                {
+                    <MudText Color="Color.Success">Success</MudText>
+                }
+                else
+                {
+                    <MudText Color="@Color.Error">
+                        <ValidationSummary />
+                    </MudText>
+                }
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12">
+            <MudText Typo="Typo.body2" Align="Align.Center">
+                Fill out the form correctly to log in.
+            </MudText>
+        </MudItem>
+    </MudGrid>
+</EditForm>
+
+@code {
+    LoginAccountForm model = new LoginAccountForm();
+    bool success;
+
+    public class LoginAccountForm
+    {
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(30, ErrorMessage = "Password must be at least 8 characters long.", MinimumLength = 8)]
+        public string Password { get; set; }
+    }
+
+    private async Task OnValidSubmit(EditContext context)
+    {
+        try
+        {
+            // Call the service method to log in the user
+            var userId = await service.LoginUser(model);
+
+            @* await localStorage.SetItemAsync("isLoggedIn", true); *@
+            // Login successful
+            success = true;
+            Snackbar.Add("Login successful!", Severity.Success);
+            // Redirect or perform any other action upon successful login
+            navigate.NavigateTo("/products");
+        }
+        catch (Exception ex)
+        {
+            // Handle login failure
+            success = false;
+            Snackbar.Add("Login failed. Please check your credentials and try again.", Severity.Error);
+            Console.WriteLine($"Error logging in user: {ex.Message}");
+        }
+    }
+}
